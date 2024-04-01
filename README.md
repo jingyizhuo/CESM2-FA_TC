@@ -21,7 +21,7 @@ $$
 v_{t+\Delta t} - v_t = MLR(X_t, X_{t+\Delta t}, v_t, v_{t-\Delta t}) + \varepsilon_t
 $$
 
-
+Predictors: MONTHLY wind (vorticity, shear, steering flow); temperature & moisture (PI, humidity or/and saturation deficit)
 ## Environment Set Up
 
 
