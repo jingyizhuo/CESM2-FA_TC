@@ -5,3 +5,19 @@ This is a notebook for running The Columbia TC hazard model CHAZ - a statistical
 ### Genesis
 ### Track
 ### Intensity
+
+
+## Environment Set Up
+
+
+## Input Data
+
+### ERA5
+
+### Climate model simulations
+
+### Formating Input
+
+## Running the Model
+
+## Model Output
