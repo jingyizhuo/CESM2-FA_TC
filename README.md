@@ -3,6 +3,11 @@ This is a notebook for running The Columbia TC hazard model CHAZ - a statistical
 
 ## Three elements of the CHAZ model
 ### Genesis
+$$
+\mu_{\text{CRH}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{rh}} \text{CRH} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
+$$
+
+
 ### Track
 ### Intensity
 
