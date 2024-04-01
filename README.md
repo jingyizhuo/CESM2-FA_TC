@@ -7,9 +7,19 @@ $$
 \mu_{\text{CRH}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{rh}} \text{CRH} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
 $$
 
+$$
+\mu_{\text{SD}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{SD}} \text{SD} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
+$$
 
 ### Track
+$$
+V_{track} = \alpha V_{850} + (1 - \alpha)V_{250} + V_{\beta}, \quad \alpha = 0.8, \quad V_{\beta} \text{ is a function of latitude}
+$$
+
 ### Intensity
+$$
+v_{t+\Delta t} - v_t = MLR(X_t, X_{t+\Delta t}, v_t, v_{t-\Delta t}) + \varepsilon_t
+$$
 
 
 ## Environment Set Up
