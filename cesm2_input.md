@@ -1,5 +1,6 @@
-# Check the CHAZ input data in CESM2
+# Prepare input data for CESM2
 
+## Table of variables
 | var | long name | units | dimensions | CESM output variable name |
 |----------|-----------|-------|------------|--------------|
 |  u   | Zonal wind                          |  m/s	 | time lev lat lon | U   | 
@@ -62,3 +63,22 @@ do
 done
 rm -rf ${outroot}/${outexpid}/temp/*.nc
 ```
+## Calculate TC related environmental variabels and TCGI:
+Reference: https://github.com/YiXcite/TCGI/blob/main/cal_TCGI.ipynb
+### [1] TC related environmental variabels x5
+    "- Absolute Vorticity @ 850 hPa [s-1]\n",
+    "- Vertical Wind Shear between 850- & 200-hPa [m s-1]\n",
+    "- Column Relative Humidity\n",
+    "- Saturation Deficit\n",
+    "- Potential Intensity [m s-1]\n",
+    "\n",
+    "Just prepare a nc.file include avort, ws, PI, crh, sd, source data is u/v850/200, T3d, mslp, skin temp, total colum water",
+
+### [2] TCGI
+$$
+\mu_{\text{CRH}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{rh}} \text{CRH} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
+$$
+
+$$
+\mu_{\text{SD}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{SD}} \text{SD} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
+$$
