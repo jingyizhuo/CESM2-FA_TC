@@ -9,3 +9,56 @@
 |  rh  | Relative humidity                   |percent| time lev lat lon | RELHUM |
 |  qa  | Specific humidity                   | kg/kg | time lev lat lon | Q |
 |  slp |  Sea level pressure                 |  Pa	 | time lat lon     | PSL|
+
+
+## CESM2 data processsing
+```bash
+#!/bin/bash
+
+# Set the root directory, case name, and component
+casename="cesm2.cntl.000"
+root="/data0/jzhuo/CESM2/cesm2_flx_adj"
+
+# Output directory and experiment ID
+outexpid="r1i1p1f1"
+outroot="/data0/jzhuo/CESM2_FLUXADJ_LE/control"
+
+component="atm"
+# Define start and end years
+ys=1950
+ye=2014
+
+# List of variables to process
+vars=(U V T TS RELHUM Q PSL)
+
+# Loop through the years
+for (( year=$ys; year<=$ye; year++ ))
+do
+    # Use a glob pattern to find matching files for each year
+    for infile in ${root}/${casename}/${component}/hist/${casename}.cam.h0.${year}-??.nc
+    do
+        # Extract date info from infile path
+        dateinfo=$(echo $infile | grep -oP '\d{4}-\d{2}.nc$')
+
+        # Process each variable
+        for var in "${vars[@]}"
+        do
+            outfile="${outroot}/${outexpid}/temp/${var}.${dateinfo}"
+            echo "Processing $outfile"
+            
+            # Perform the ncremap operation
+            # Note: You need to replace VAR with the actual variable in the ncremap command.
+            # This might require a more complex substitution or a different approach in a real scenario.
+            ncremap -v $var -d dat_dst.nc $infile $outfile
+        done
+    done
+done
+
+for var in "${vars[@]}"
+do
+    files="${outroot}/${outexpid}/temp/${var}.*.nc"
+    combfile="${outroot}/${outexpid}/Amon/${var}.${ys}-${ye}.nc"
+    cdo mergetime $files $combfile
+done
+rm -rf ${outroot}/${outexpid}/temp/*.nc
+```
