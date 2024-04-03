@@ -82,3 +82,7 @@ $$
 $$
 \mu_{\text{SD}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{SD}} \text{SD} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
 $$
+
+
+mu_crh = np.exp(b_crh[0] + b_crh[1]*bc_now['avort'] + b_crh[2]*bc_now['crh'] + 
+                            b_crh[3]*bc_now['PI'] + b_crh[4]*bc_now['ws']
