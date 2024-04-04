@@ -73,6 +73,7 @@ Reference: https://github.com/YiXcite/TCGI/blob/main/cal_TCGI.ipynb
     "- Potential Intensity [m s-1]\n",
     "\n",
     "Just prepare a nc.file include avort, ws, PI, crh, sd, source data is u/v850/200, T3d, mslp, skin temp, total colum water",
+    All the variables are very easy to derive, except for PI need to re-check
 
 ### [2] TCGI
 $$
