@@ -2,7 +2,7 @@
 
 ## Table of variables
 | var | long name | units | dimensions | CESM output variable name | CMIP6 variable
-|----------|-----------|-------|------------|--------------|
+|----------|-----------|-------|------------|--------------|-------|
 |  u   | Zonal wind                          |  m/s	 | time lev lat lon | U   | ua
 |  v   | Meridional wind                     |  m/s	 | time lev lat lon |  V  | va
 |  t   | Temperature                         |   K   | time lev lat lon | T | ta
