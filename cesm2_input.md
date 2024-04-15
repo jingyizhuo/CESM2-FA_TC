@@ -8,7 +8,7 @@
 |  t   | Temperature                         |   K   | time lev lat lon | T | ta
 |  ts  | Surface temperature (radiative)     |   K   | time lat lon     | TS | ts 
 |  rh  | Relative humidity                   |percent| time lev lat lon | RELHUM | 
-|  qa  | Specific humidity                   | kg/kg | time lev lat lon | Q | 
+|  qa  | Specific humidity                   | kg/kg | time lev lat lon | Q | hur
 |  slp |  Sea level pressure                 |  Pa	 | time lat lon     | PSL| psl |
 |  cw |  Total (vertically integrated) precipitable water |  kg/m2	 | time lat lon     | TMQ| prw|
 
