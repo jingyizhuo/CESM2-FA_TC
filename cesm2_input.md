@@ -10,6 +10,7 @@
 |  rh  | Relative humidity                   |percent| time lev lat lon | RELHUM |
 |  qa  | Specific humidity                   | kg/kg | time lev lat lon | Q |
 |  slp |  Sea level pressure                 |  Pa	 | time lat lon     | PSL|
+|  tmq |  Total (vertically integrated) precipitable water |  kg/m2	 | time lat lon     | TMQ|
 
 
 ## CESM2 data processsing
@@ -30,7 +31,7 @@ ys=1950
 ye=2014
 
 # List of variables to process
-vars=(U V T TS RELHUM Q PSL)
+vars=(U V T TS RELHUM Q PSL TMQ)
 
 # Loop through the years
 for (( year=$ys; year<=$ye; year++ ))
