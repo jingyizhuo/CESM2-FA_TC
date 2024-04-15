@@ -1,16 +1,16 @@
 # Prepare input data for CESM2
 
 ## Table of variables
-| var | long name | units | dimensions | CESM output variable name |
+| var | long name | units | dimensions | CESM output variable name | CMIP6 variable
 |----------|-----------|-------|------------|--------------|
-|  u   | Zonal wind                          |  m/s	 | time lev lat lon | U   | 
-|  v   | Meridional wind                     |  m/s	 | time lev lat lon |  V  | 
-|  t   | Temperature                         |   K   | time lev lat lon | T |
-|  ts  | Surface temperature (radiative)     |   K   | time lat lon     | TS |
-|  rh  | Relative humidity                   |percent| time lev lat lon | RELHUM |
-|  qa  | Specific humidity                   | kg/kg | time lev lat lon | Q |
-|  slp |  Sea level pressure                 |  Pa	 | time lat lon     | PSL|
-|  cw |  Total (vertically integrated) precipitable water |  kg/m2	 | time lat lon     | TMQ|
+|  u   | Zonal wind                          |  m/s	 | time lev lat lon | U   | ua
+|  v   | Meridional wind                     |  m/s	 | time lev lat lon |  V  | va
+|  t   | Temperature                         |   K   | time lev lat lon | T | ta
+|  ts  | Surface temperature (radiative)     |   K   | time lat lon     | TS | ts 
+|  rh  | Relative humidity                   |percent| time lev lat lon | RELHUM | 
+|  qa  | Specific humidity                   | kg/kg | time lev lat lon | Q | 
+|  slp |  Sea level pressure                 |  Pa	 | time lat lon     | PSL| psl |
+|  cw |  Total (vertically integrated) precipitable water |  kg/m2	 | time lat lon     | TMQ| prw|
 
 
 ## CESM2 data processsing
@@ -69,7 +69,7 @@ rm -rf ${outroot}/${outexpid}/temp/*.nc
 can be directly fetched via dods:
 http://mary.ldeo.columbia.edu:81/CMIP6/.CMIP/.NCAR/.CESM2/.amip/.r1i1p1f1/.Amon/.psl/.gn/.v20190218/.psl_Amon_CESM2_amip_r1i1p1f1_gn_195001-201412.nc/.psl/dods![image](https://github.com/jingyizhuo/tc_downscaling/assets/141192552/6c1635b0-faa5-4928-8e76-851d25b7d600)
 
-
+vars = ['', 'prw'
 ## Calculate TC related environmental variabels and TCGI:
 Reference: https://github.com/YiXcite/TCGI/blob/main/cal_TCGI.ipynb
 ### [1] TC related environmental variabels x5
