@@ -63,6 +63,10 @@ do
 done
 rm -rf ${outroot}/${outexpid}/temp/*.nc
 ```
+
+## CESM2 - AMPI data processsing
+
+
 ## Calculate TC related environmental variabels and TCGI:
 Reference: https://github.com/YiXcite/TCGI/blob/main/cal_TCGI.ipynb
 ### [1] TC related environmental variabels x5
