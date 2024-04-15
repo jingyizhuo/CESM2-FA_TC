@@ -64,7 +64,9 @@ done
 rm -rf ${outroot}/${outexpid}/temp/*.nc
 ```
 
-## CESM2 - AMPI data processsing
+## CESM2 - AMIP data processsing
+can be directly fetched via dods:
+http://mary.ldeo.columbia.edu:81/CMIP6/.CMIP/.NCAR/.CESM2/.amip/.r1i1p1f1/.Amon/.psl/.gn/.v20190218/.psl_Amon_CESM2_amip_r1i1p1f1_gn_195001-201412.nc/.psl/dods![image](https://github.com/jingyizhuo/tc_downscaling/assets/141192552/6c1635b0-faa5-4928-8e76-851d25b7d600)
 
 
 ## Calculate TC related environmental variabels and TCGI:
