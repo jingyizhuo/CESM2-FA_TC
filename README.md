@@ -1,7 +1,8 @@
 # TC downscaling based on CHAZ
-This is a notebook for running The Columbia TC hazard model CHAZ - a statistical-dynamical downscaling model which uses large-scale conditions representing the atmospheric dynamic and thermodynamic environment from a global model to predict the genesis, tracks and intensities of synthetic TCs. (Lee et al. 2018, JAMES)
+This is a notebook for running The Columbia TC hazard model CHAZ - a statistical-dynamical downscaling model which uses large-scale conditions representing the atmospheric dynamic and thermodynamic environment from a global model to predict the genesis, tracks and intensities of synthetic TCs. 
+The details of underlying science of the CHAZ model can be found at [Lee et al. 2018](https://doi.org/10.1002/2017MS001186)) (Lee et al. 2018, JAMES)
 
-## Three elements of the CHAZ model
+## Three elements of CHAZ
 ### Genesis
 $$
 \mu_{\text{CRH}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{rh}} \text{CRH} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
@@ -26,6 +27,11 @@ v_{t+\Delta t} - v_t = MLR(X_t, X_{t+\Delta t}, v_t, v_{t-\Delta t}) + \varepsil
 $$
 
 Predictors: MONTHLY wind (vorticity, shear, steering flow); temperature & moisture (PI, humidity or/and saturation deficit); \varepsilon_t is stochastic forcing component accounts, in a statistically representative sense, for the internal storm dynamics or other physical processes that do not depend explicitly on the environment.
+
+## Workflow of CHAZ
+![flow_chart](https://user-images.githubusercontent.com/46905677/126709479-ad3eab03-a4bd-4ea5-a85b-79f1a83bed83.png)
+
+
 ## Environment Set Up
 
 
