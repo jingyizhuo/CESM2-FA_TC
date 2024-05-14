@@ -14,8 +14,10 @@ $$
 ### Track
 $$
 V_{track} = \alpha V_{850} + (1 - \alpha)V_{250} + V_{\beta}
+$$
 
-\quad \alpha = 0.8, \quad V_{\beta} \text{ is the beta drift vector which is a function of latitude}
+$$
+\quad \alpha = 0.8, \quad V_{\beta} \text{  is the beta drift vector which is a function of latitude}
 $$
 
 ### Intensity
