@@ -1,8 +1,17 @@
-# TC downscaling based on CHAZ
-This is a notebook for running The Columbia TC hazard model CHAZ - a statistical-dynamical downscaling model which uses large-scale conditions representing the atmospheric dynamic and thermodynamic environment from a global model to predict the genesis, tracks and intensities of synthetic TCs. For more details of the CHAZ model please refer to [Lee et al. 2018](https://doi.org/10.1002/2017MS001186). 
+# TC Downscaling Using CHAZ
 
-## Three elements of the CHAZ model
+This repository provides a notebook for running the Columbia TC hazard model CHAZ, a statistical-dynamical downscaling tool. CHAZ uses large-scale atmospheric dynamic and thermodynamic fields from reanalysis or climate model outputs to simulate the genesis, tracks, and intensities of synthetic tropical cyclones (TCs).
+
+For further model details, please refer to [Lee et al., 2018](https://doi.org/10.1002/2017MS001186).
+
+---
+
+## Three basic elements of the CHAZ model
+
 ### Genesis
+
+CHAZ offers two formulations of genesis potential:
+
 $$
 \mu_{\text{CRH}} = \exp\left(b + b_{\eta} \eta_{850} + b_{\text{rh}} \text{CRH} + b_{\text{PI}} \text{PI} + b_{\text{SHR}} \text{SHR}\right)
 $$
@@ -12,6 +21,7 @@ $$
 $$
 
 ### Track
+
 $$
 V_{track} = \alpha V_{850} + (1 - \alpha)V_{250} + V_{\beta}
 $$
@@ -20,31 +30,110 @@ $$
 \quad \alpha = 0.8, \quad V_{\beta} \text{  is the beta drift vector which is a function of latitude}
 $$
 
+
 ### Intensity
+
 $$
 v_{t+\Delta t} - v_t = MLR(X_t, X_{t+\Delta t}, v_t, v_{t-\Delta t}) + \varepsilon_t
 $$
 
-Predictors: MONTHLY wind (vorticity, shear, steering flow); temperature & moisture (PI, humidity or/and saturation deficit); \varepsilon_t is stochastic forcing component accounts, in a statistically representative sense, for the internal storm dynamics or other physical processes that do not depend explicitly on the environment.
+Predictors include monthly wind (vorticity, shear, steering flow), temperature and moisture (PI, humidity, and/or saturation deficit). The stochastic term \(\varepsilon_t\) accounts for internal storm dynamics not explicitly tied to the environment.
 
-## Workflow of the CHAZ model
+---
+
+## 🔁 Workflow Overview
+
 ![flow_chart](https://user-images.githubusercontent.com/46905677/126709479-ad3eab03-a4bd-4ea5-a85b-79f1a83bed83.png)
 
+## 🔧 Step-by-Step Instructions
 
-## Quick Start: Run CHAZ
-Here is a quick start command list to get the model running (TBD)
+### Step 1: Prepare Input Data
 
-## Environment Set Up
+Inputs may come from reanalysis or climate model outputs.
+
+Variables required: RH, V, U, TS, PSL, PI, CRH, RelaVOR, etc.
+
+- **Genesis preprocessing**: Compute TCGI (CRH and/or SD versions)
+- **Track preprocessing**: Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance
+- **Intensity preprocessing**: Prepare predictor fields and climatological statistics
+
+#### Note: If using the CHAZ code adapted by Chia-Ying for CMIP6, you mainly need to prepare TCGI; the rest is handled semi-automatically.
 
 
-## Input Data
+### Step 2: Run CHAZ Preprocessing
 
-### ERA5
+Edit `Namelist.py`:
 
-### Climate model simulations
+```bash
+sed -i '/runCHAZ/c\runCHAZ=False' Namelist.py
+sed -i '/runPreprocess/c\runPreprocess=True' Namelist.py
+sed -i "/^ENS/c\ENS = '$imem'" Namelist.py
 
-### Formating Input
+# Optional adjustments depending on your data:
+sed -i 's/calWind = True/calWind = False/g' Namelist.py   >>>> jzhuo: I forthet why False for this. 
+sed -i 's/calA = True/calA = False/g' Namelist.py
+```
 
-## Running the Model
+If not calculate A when only monthly data is avaliable, link pre-calculated A files from existing source:
+```bash
+path_cesm2_daily=/data0/clee/CMIP6/CESM2/r4i1p1f1/pre
+ln -sf $path_cesm2_daily/A*.nc $path_pre/
+```
 
-## Model Output
+Then run the preprocessing to get YYYY*r1i1p1f1.nc    >>>> jzhuo: I need to double check to ensure the CESM2 output are used
+```bash
+python CHAZ.py
+```
+
+### Step 2.1: Apply Bias Correction 
+```bash
+python getMeanStd.py
+```
+
+### Step 3: Run CHAZ Downscaling
+Prepare the working directory:
+```bash
+ln -sf $path_pre/PI*.mat $path_wdir/
+ln -sf $path_pre/TCGI*.mat $path_wdir/
+ln -sf $path_pre/A*.nc $path_wdir/
+ln -sf $path_pre/*_${imem}.nc $path_wdir/
+ln -sf $path_pre/coefficient_meanstd.nc $path_wdir/
+ln -sf $path_pre/trackPredictorsbt_obs.pik $path_wdir/
+```
+
+Edit Namelist.py for downscaling:
+```bash
+cd $path_work
+sed -i '/runCHAZ/c\runCHAZ=True' Namelist.py
+sed -i '/runPreprocess/c\runPreprocess=False' Namelist.py
+sed -i "/^ENS/c\ENS = '$imem'" Namelist.py
+
+```
+
+Copy source code:
+```bash
+cp /home/jzhuo/chaz/src_nodaily/* $path_wdir
+cp ./Namelist.py $path_wdir
+```
+
+
+Run downscaling:
+```bash
+cd $path_wdir
+echo "Running downscaling..."
+python CHAZ.py
+```
+
+### Step 3: Run CHAZ Downscaling
+```bash
+python rev.pik2netcdf_merge_2100.py
+echo "Done. Check the NetCDF output."
+```
+
+#### Refs:
+http://localhost:3177/lab/workspaces/auto-F/tree/home/jzhuo/chaz/chaz/run_CESM2_FLX/main.sh
+http://localhost:3177/lab/workspaces/auto-F/tree/home/jzhuo/chaz/chaz/src_nodaily/CHAZ.py
+
+
+
+
