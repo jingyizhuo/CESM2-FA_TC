@@ -51,7 +51,7 @@ Predictors include monthly wind (vorticity, shear, steering flow), temperature a
 
 Inputs may come from reanalysis or climate model outputs.
 
-Variables required: RH, V, U, TS, PSL, PI, CRH, RelaVOR, etc.
+Variables required: T, PSL, TS, TMQ, U, V, Q to get TCGI, addtionally need RELHUM for CHAZ
 
 - **Genesis preprocessing**: Compute TCGI (CRH and/or SD versions)
 - **Track preprocessing**: Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance
