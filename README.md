@@ -57,7 +57,7 @@ Variables required: T, PSL, TS, TMQ, U, V, Q to get TCGI, addtionally need RELHU
 - **Track preprocessing**: Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance
 - **Intensity preprocessing**: Prepare predictor fields and climatological statistics
 
-#### Note: If using the CHAZ code adapted by Chia-Ying for CMIP6, you mainly need to prepare TCGI; the rest is handled semi-automatically.
+#### Note: If using the CHAZ code adapted by Chia-Ying for CMIP6, you only need to prepare TCGI and prepare a cvs file saving input data paths, the rests are handled semi-automatically.
 
 
 ### Step 2: Run CHAZ Preprocessing
