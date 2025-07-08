@@ -51,13 +51,30 @@ Predictors include monthly wind (vorticity, shear, steering flow), temperature a
 
 Inputs may come from reanalysis or climate model outputs.
 
-Variables required: T, PSL, TS, TMQ, U, V, Q to get TCGI, addtionally need RELHUM for CHAZ
+Variables required: T, PSL, TS, TMQ, U, V, Q and RELHUM.
 
-- **Genesis preprocessing**: Compute TCGI (CRH and/or SD versions) and GPI. If you are a user of our local machine at LDEO, please refer to the following notebooks: ```/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb >> Calculate TCGI``` and ```/data0/jzhuo/tc_risk/code_TCGI/example_code/code/MPI.ipynb >>> Calculate GPI```.
-- **Track preprocessing**: Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance
-- **Intensity preprocessing**: Prepare predictor fields and climatological statistics
+#### Genesis preprocessing: 
 
-#### Note: If using the CHAZ code adapted by Chia-Ying for CMIP6, you only need to prepare TCGI and prepare a cvs file saving input data paths, the rests are handled semi-automatically.
+Compute **TCGI** (both **CRH** and **SD** versions are supported).  
+Note that **GPI** is a predictor of TCGI thus will be computed during this step. We need to save the GPI for the later usage for generating TC intensity data.
+
+> 💻 **If you are an LDEO local machine user**, please refer to the following example notebooks:
+- [`TCGI.ipynb`]( /data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb ) → *Calculate TCGI*  
+- [`MPI.ipynb`]( /data0/jzhuo/tc_risk/code_TCGI/example_code/code/MPI.ipynb ) → *Calculate GPI*
+
+
+####  Track preprocessing
+Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance. 
+One can skip this preprocessing step if they only have montly data, instead, contact Chia-Ying to obtain appropriate wind covariance data for you.
+
+#### Intensity preprocessing
+Prepare predictor fields and climatological statistics. 
+Ensure correct paths are set for your saved model output fields:
+  - `U`, `V`, `RELHUM`
+  - Prepare a `.csv` file specifying paths to these inputs.  
+  > 📄 *An example CSV format can be found at:*  
+  `/path/to/example.csv`
+
 
 
 ### Step 2: Run CHAZ Preprocessing
