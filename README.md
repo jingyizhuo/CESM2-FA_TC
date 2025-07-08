@@ -74,7 +74,7 @@ Ensure correct paths are set for your saved model output fields:
   > 📄 An example CSV format file denoting the input data path can be found at:  
   `/path/to/example.csv`
 
-
+---
 
 ### Step 2: Run CHAZ Preprocessing
 
@@ -105,6 +105,8 @@ python CHAZ.py
 ```bash
 python getMeanStd.py
 ```
+
+---
 
 ### Step 3: Run CHAZ Downscaling
 Prepare the working directory:
@@ -140,11 +142,13 @@ echo "Running downscaling..."
 python CHAZ.py
 ```
 
-### Step 3: Run CHAZ Downscaling
+### Step 4: Run CHAZ Downscaling
 ```bash
 python rev.pik2netcdf_merge_2100.py
 echo "Done. Check the NetCDF output."
 ```
+
+---
 
 #### Refs:
 ```bash
