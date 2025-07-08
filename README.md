@@ -53,7 +53,7 @@ Inputs may come from reanalysis or climate model outputs.
 
 Variables required: T, PSL, TS, TMQ, U, V, Q to get TCGI, addtionally need RELHUM for CHAZ
 
-- **Genesis preprocessing**: Compute TCGI (CRH and/or SD versions)
+- **Genesis preprocessing**: Compute TCGI (CRH and/or SD versions) and GPI. If you are a user of our local machine at LDEO, please refer to the following notebooks: ```/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb >> Calculate TCGI``` and ```/data0/jzhuo/tc_risk/code_TCGI/example_code/code/MPI.ipynb >>> Calculate GPI```.
 - **Track preprocessing**: Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance
 - **Intensity preprocessing**: Prepare predictor fields and climatological statistics
 
