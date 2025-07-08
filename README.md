@@ -53,21 +53,21 @@ Inputs may come from reanalysis or climate model outputs.
 
 Variables required: T, PSL, TS, TMQ, U, V, Q and RELHUM.
 
-#### Genesis preprocessing: 
+#### 🐾 TC Genesis preprocessing: 
 
 Compute **TCGI** (both **CRH** and **SD** versions are supported).  
 Note that **GPI** is a predictor of TCGI thus will be computed during this step. We need to save the GPI for the later usage for generating TC intensity data.
 
-> 💻 **If you are an LDEO local machine user**, please refer to the following example notebooks:
+> 🖥 **If you are an LDEO local machine user**, please refer to the following example notebooks:
 - [`TCGI.ipynb`]( /data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb ) → *Calculate TCGI*  
 - [`MPI.ipynb`]( /data0/jzhuo/tc_risk/code_TCGI/example_code/code/MPI.ipynb ) → *Calculate GPI*
 
 
-####  Track preprocessing
+#### 〰️ TC Track preprocessing
 Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance. 
 One can skip this preprocessing step if they only have montly data, instead, contact Chia-Ying to obtain appropriate wind covariance data for you.
 
-#### Intensity preprocessing
+#### 🌀 TC Intensity preprocessing
 Prepare predictor fields and climatological statistics. 
 Ensure correct paths are set for your saved model output fields:
   - `U`, `V`, `RELHUM`
