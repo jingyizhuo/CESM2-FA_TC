@@ -56,11 +56,11 @@ Variables required: T, PSL, TS, TMQ, U, V, Q and RELHUM.
 #### 🐾 TC Genesis preprocessing, also see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md): 
 
 Compute **TCGI** (both **CRH** and **SD** versions are supported). 
-Note that **GPI** is a predictor of TCGI thus will be computed during this step. We need to save the GPI for the later usage for generating TC intensity data.
+Note that **PI** is a predictor of TCGI thus will be computed during this step. We need to save the PI for the later usage for generating TC intensity data.
 
 > 🖥 **If you are an LDEO local machine user**, please refer to the following example notebooks:
 - `/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb`
-- My scripts that run parallelly to get each ensemble member's TCGI and MIP are saved at `/data0/jzhuo/tc_risk/CESM2/code_TCGI/main*.sh` 
+- My scripts that run parallelly to get each ensemble member's TCGI and PI are saved at `/data0/jzhuo/tc_risk/CESM2/code_TCGI/main*.sh` 
 
 #### 〰️ TC Track preprocessing
 Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance. 
