@@ -53,9 +53,9 @@ Inputs may come from reanalysis or climate model outputs.
 
 Variables required: T, PSL, TS, TMQ, U, V, Q and RELHUM.
 
-#### 🐾 TC Genesis preprocessing: 
+#### 🐾 TC Genesis preprocessing, also see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md): 
 
-Compute **TCGI** (both **CRH** and **SD** versions are supported).  
+Compute **TCGI** (both **CRH** and **SD** versions are supported). 
 Note that **GPI** is a predictor of TCGI thus will be computed during this step. We need to save the GPI for the later usage for generating TC intensity data.
 
 > 🖥 **If you are an LDEO local machine user**, please refer to the following example notebooks:
