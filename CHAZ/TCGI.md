@@ -15,7 +15,7 @@ Scripts used to compute TCGI for multiple ensemble members of CESM2 and CESM2-FA
 
 These scripts call `get_TCGI_predictor.py` to get the predictors of TCGI (vws; vmax, which is mpi in terms of wind speed; avort; crh; sd), and then call `cal_TCGI.py` calculate the TCGI of both CRH (Tippett et al. 2011 JCL) and SD (Camargo et al. 2014 JCL) versions.
 
-An example notebook for calculating TCGI—whether using ERA5, other reanalysis products, or climate model outputs—is available at: `/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb`
+✅ An **example** notebook for calculating TCGI—whether using ERA5, other reanalysis products, or climate model outputs—is available at: `/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb`. 
 
 ### 📂 My data
 - Path of TCGI predictors: `/data0/jzhuo/tc_risk/CESM2/data_TCGI/tcgi_predictor_cesm2_cesm2fa_full_forcing`
