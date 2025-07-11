@@ -152,15 +152,15 @@ echo "Done. Check the NetCDF output."
 ---
 
 ### Note:
-If you prefer not to create a new conda environment for running CHAZ, you can use my existing environment located at:
-`/home/jzhuo/.conda/envs/chaz_xesmf`
-
+If you prefer not to create a new conda environment for running CHAZ, you can use my existing environment:
 ```bash
-/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb >> Calculate TCGI
+conda activate /home/jzhuo/.conda/envs/chaz_xesmf
+```
+
+`/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb >> Calculate TCGI
 /data0/jzhuo/tc_risk/code_TCGI/example_code/code/MPI.ipynb >>> Calculate GPI
 /home/jzhuo/chaz/chaz/run_CESM2_FLX/main.sh >> Run CHAZ
-/home/jzhuo/chaz/chaz/src_nodaily/CHAZ.py >> Source code
-```
+/home/jzhuo/chaz/chaz/src_nodaily/CHAZ.py >> Source code`
 
 
 
