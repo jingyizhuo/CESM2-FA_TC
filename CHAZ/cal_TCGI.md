@@ -1,4 +1,4 @@
-# Tropical Cyclone Genesis Indices (TCGI)
+# Note on Calculating Tropical Cyclone Genesis Indices (TCGI)
 
 ### 📚 References: 
 - [Camargo et al. 2014 JCL](https://journals.ametsoc.org/view/journals/clim/27/24/jcli-d-13-00505.1.xml)
