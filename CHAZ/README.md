@@ -47,7 +47,7 @@ Predictors include monthly wind (vorticity, shear, steering flow), temperature a
 
 ## 🔧 Step-by-Step Instructions
 
-### Step 1: Prepare Input Data
+### Step 1: Data preparation/pre-processing:
 
 Inputs may come from reanalysis or climate model outputs.
 
