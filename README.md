@@ -2,7 +2,7 @@
 
 ### 🌀 How to study TC in the biased CESM2 and less-biased CESM2-FA?
 
-Understanding TC activity and associated risks in both the present and future climate provides valuable information for stakeholders to inform local policy and preparedness measures. Here, we employ a hierarchical modeling approach to assess how mean-state and forced-trend biases in CESM2 influence TC projections. This approach integrates climate simulations from the fully coupled but corase (~2°atm ~1°ocn) CESM2 and its flux-adjusted counterpart CESM2-FA, along with both statistical-dynamical TC downscaling models and high-resolution atmospheric models (~0.5° and ~0.25°; dynamical TC downscaling).
+Understanding TC activity and associated risks in both the present and future climate provides valuable information for stakeholders to inform local policy and preparedness measures. Here, we employ a hierarchical modeling approach to assess how mean-state and forced-trend biases in CESM2 influence TCs. The hierarchical modeling approach integrates climate simulations from the fully coupled but corase (~2°atm ~1°ocn) CESM2 and its flux-adjusted counterpart CESM2-FA, along with both statistical-dynamical TC downscaling models and high-resolution atmospheric models (~0.5° and ~0.25°; dynamical TC downscaling).
 
 
 ### 🌍 TC downscaling
