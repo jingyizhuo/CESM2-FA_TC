@@ -72,7 +72,7 @@ Ensure correct paths are set for your saved model output fields:
   - `U`, `V`, `RELHUM`
   - Prepare a `.csv` file specifying paths to these inputs.  
   > 📄 An example CSV format file denoting the input data path can be found at:  
-  `/path/to/example.csv`
+  `/data0/jzhuo/tc_risk/CESM2/CHAZ/input_data/cesm2_cesm2fa_chaz_data.csv`
 
 ---
 
