@@ -61,6 +61,7 @@ Note that **PI** is a predictor of TCGI thus will be computed during this step. 
 > 🖥 **If you are an LDEO local machine user**, please refer to the following example notebooks:
 - `/data0/jzhuo/tc_risk/code_TCGI/example_code/code/TCGI.ipynb`
 - My scripts that run parallelly to get each ensemble member's TCGI and PI are saved at `/data0/jzhuo/tc_risk/CESM2/code_TCGI/main*.sh` 
+My data of CESM2 and CESM2-FA TCGI and PI are saved at `/data0/jzhuo/tc_risk/CESM2/data_TCGI/` and `/data0/jzhuo/tc_risk/CESM2/data_PI/`
 
 #### 〰️ TC Track preprocessing
 Calculate covariance matrix A for synthetic wind at 250/850 hPa and monthly-daily wind covariance. 
