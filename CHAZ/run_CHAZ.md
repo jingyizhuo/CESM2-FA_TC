@@ -32,7 +32,7 @@ Please review the file at `/data0/jzhuo/tc_risk/chaz_src/src_nodaily/Namelist.py
 
 ⚠️ The current version of CHAZ does **not** include TCGI and PI calculations — you will need to generate these datasets separately (see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md)) and link them into the CHAZ working directory using `ln -sf` (this step is already handled in the `main.sh` script below).
 
-✅ The following main.sh script implements a complete, reproducible workflow for running CHAZ from preprocessing to downscaling. Copy and paste the script into the directory where you want to place main.sh, then run:
+✅ The following `main.sh` script implements a complete, reproducible workflow for running CHAZ from preprocessing to downscaling. Copy and paste the script into the directory where you want to place `main.sh`, then run:
 
 ```bash
 bash main.sh
