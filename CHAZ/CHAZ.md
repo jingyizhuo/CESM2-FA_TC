@@ -11,7 +11,7 @@ The source code provided here has been adapted for:
 2. Support for **CESM2/CESM2-FA input formats**, ensuring that PI and TCGI .mat files use `'lon'` and `'lat'` as axes and have a shape of `(91, 180)`
 
 ### 📚 CHAZ Tutorials
-I have also created two CHAZ tutorials by converting the source code into Jupyter notebooks, which can be run directly in your browser via Google Colab. 
+I have also created two CHAZ tutorials by converting Chia-Ying's source code into Jupyter notebooks, which can be run directly in your browser via Google Colab. 
 
 - [CHAZ Preprocessing Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Tutorial_chaz_pre.ipynb)  
 - [CHAZ Downscaling Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Turtorial_chaz_downscaling.ipynb)
