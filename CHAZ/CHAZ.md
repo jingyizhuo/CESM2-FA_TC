@@ -15,7 +15,7 @@ I have also created two CHAZ tutorials by converting Chia-Ying's source code int
 
 - [CHAZ Preprocessing Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Tutorial_chaz_pre.ipynb)  
 - [CHAZ Downscaling Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Turtorial_chaz_downscaling.ipynb)
-- Same jupyter notebooks are uploaded to [CHAZ github](https://github.com/cl3225/CHAZ/tree/main)
+- You can also find the same jupyter notebooks that are uploaded to [CHAZ github](https://github.com/cl3225/CHAZ/tree/main)
 
 These tutorials are designed to help users understand and reproduce the CHAZ workflow. **However, running CHAZ on LDEO-Taroko or other local machines will still require following my step-by-step instructions below.**
 
