@@ -13,8 +13,8 @@ The source code provided here has been adapted for:
 ### 📚 CHAZ Tutorials
 I have also created two CHAZ tutorials by converting the source code into Jupyter notebooks, which can be run directly in your browser via Google Colab. 
 
-- [CHAZ Preprocessing Tutorial (Jupyter Notebook)](https://github.com/cl3225/CHAZ/blob/main/Tutorial_chaz_pre.ipynb)  
-- [CHAZ Downscaling Tutorial (Colab)](https://github.com/cl3225/CHAZ/blob/main/Turtorial_chaz_downscaling.ipynb)
+- [CHAZ Preprocessing Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Tutorial_chaz_pre.ipynb)  
+- [CHAZ Downscaling Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Turtorial_chaz_downscaling.ipynb)
 
 These tutorials are designed to help users understand and reproduce the CHAZ workflow. **However, running CHAZ on LDEO-Taroko or other local machines will still require following my step-by-step instructions below.**
 
