@@ -8,7 +8,8 @@
 ⚠️ Please **do not modify** the original source code directly.
 The source code provided here has been adapted for:
 1. Compatibility with **Python 3** (*Quick note: Many modifications have been made to ensure CHAZ running wiht Python v3, many other modificaitons are also made to ensure scripts running, but it has been a while, I don't remember exactly what modifications I've made*)
-2. Support for **CESM2/CESM2-FA input formats**, ensuring that PI and TCGI .mat files use `'lon'` and `'lat'` as axes and have a shape of `(91, 180)`
+2. Support for **CESM2/CESM2-FA input formats**, ensuring that PI and TCGI .mat files use `'lon'` and `'lat'` as axes and have a shape of `(91, 180)`. 
+Note: Chia-Ying’s original code only accepts (90, 180) data for the intensity model bias correction step. If you are using her original version instead of the revised code provided here, please adjust your input accordingly.
 
 ### 📚 CHAZ Tutorials
 I have also created two CHAZ tutorials by converting Chia-Ying's source code into Jupyter notebooks, which can be run directly in your browser via Google Colab. 
