@@ -1,9 +1,21 @@
 # 🌎 👉 🌀 TC Downscaling from CESM2/CESM2-FA Using CHAZ
 
-## 1️⃣ CHAZ Source Code
+## 1️⃣ CHAZ Package, including source Codes and Model parameters
 
-- `/data0/jzhuo/tc_risk/chaz_src/src` — for runs **with daily** data  
-- `/data0/jzhuo/tc_risk/chaz_src/src_nodaily` — for runs **with only monthly** data
+The CHAZ package (source code, dependencies, and model parameters) is stored at:
+```bash
+/data0/jzhuo/tc_risk/chaz_src/
+```
+Copy this folder to your local machine. It contains:
+
+`src/` — Code for runs with daily data
+
+`src_nodaily/` — Code for runs with monthly-only data
+
+`pyclee/` — CHAZ’s dependent Python modules
+
+`chaz_data/` — CHAZ’s dependent data, for example: landmask.nc, best-track data
+
 
 ⚠️ Please **do not modify** the original source code directly.
 The source code provided here has been adapted for:
