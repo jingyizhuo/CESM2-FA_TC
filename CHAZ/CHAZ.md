@@ -1,7 +1,7 @@
 # 🌎 👉 🌀 TC Downscaling Using CHAZ
 
 #### Update Notes — 2025.08.08
-CHAZ was successfully installed on the Princeton Tiger3 cluster. This tutorial has now been updated to support all platforms, including local machines.
+CHAZ was successfully installed on the Princeton Tiger3 cluster. This tutorial has now been updated to support all platforms, so you can run CHAZ on your local machines.
 
 #### Update Notes — 2025.07.04
 Created this GitHub page to demonstrate running CHAZ with my own simulation data — fully coupleds run using CESM2 and CESM2-FA (Zhuo et al. 2025 JCL).
