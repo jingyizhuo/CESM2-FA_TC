@@ -41,7 +41,7 @@ For a deeper understanding of CHAZ’s source code, see the Jupyter notebook tut
 These tutorials aim to help users understand and reproduce the CHAZ workflow.
 However, **running CHAZ on LDEO-Taroko or other local systems still requires following the step-by-step instructions below.**
 
-## 2️⃣ Be Ready! - Prepare Your Data and Set Up the CHAZ Working Directory
+## 2️⃣ Be Ready! — Prepare Your Data and Set Up the CHAZ Working Directory
 **1. Prepare the input list**
 Create a .csv file specifying the paths to all CHAZ input files.
 Example file:
@@ -53,7 +53,7 @@ Example file:
 For each case, make a dedicated working directory under:
    `/data0/jzhuo/tc_risk/CESM2/CHAZ/work/`
   
-## 3️⃣ Run CHAZ! - Set Parameters and Execute the Analysis via a bash script `main.sh`
+## 3️⃣ Run CHAZ! — Set Parameters and Execute the Analysis via a bash script `main.sh`
 
 📝 CHAZ is controlled via `Namelist.py`, which determines whether to run the **preprocessing** or **downscaling** steps and defines the paths to required input data.  
 Please review the file at `/data0/jzhuo/tc_risk/chaz_src/src_nodaily/Namelist.py` to get a sense of how the script is configured.
