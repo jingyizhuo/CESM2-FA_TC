@@ -77,10 +77,10 @@ bash main.sh
 # Author: Jingyi zhuo (jzhuo@princeton.edu)
 
 # Set up working path
-root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work # Modify to your own path !!!
-root_PI=/data0/jzhuo/tc_risk/CESM2/data_PI # Modify to your own path !!!
-root_TCGI=/data0/jzhuo/tc_risk/CESM2/data_TCGI # Modify to your own path !!!
-pth_chaz_src=/data0/jzhuo/tc_risk/chaz_src # Modify to your own path !!!
+root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work # Modify to your own path !!! ⚠️ 
+root_PI=/data0/jzhuo/tc_risk/CESM2/data_PI # Modify to your own path !!! ⚠️ 
+root_TCGI=/data0/jzhuo/tc_risk/CESM2/data_TCGI # Modify to your own path !!! ⚠️ 
+pth_chaz_src=/data0/jzhuo/tc_risk/chaz_src # Modify to your own path !!! ⚠️ 
 cd $root_work
 
 ####################################################
@@ -153,13 +153,13 @@ sed -i "/^TCGIinput/c\TCGIinput = 'TCGI_CRH_PI'" $path_pre/Namelist.py  # or ada
 
 
 #     Link A_*YYYYMM.nc: covariance matrix
-# For users who don't have daily U, V data, you need to chat with Chia-Ying what data your can use. Here, I used existing wind covarience data (named A_*YYYYMM.nc) calculated using CMIP6-CESM2 !!!
+# For users who don't have daily U, V data, you need to chat with Chia-Ying what data your can use. Here, I used existing wind covarience data (named A_*YYYYMM.nc) calculated using CMIP6-CESM2 !!! ⚠️ 
 
 if [ "$reso" == "Amon" ]; then
     sed -i 's/calWind = True/calWind = False/g' Namelist.py
     sed -i 's/calA = True/calA = False/g' Namelist.py
     # Link A from other locations:
-    ln -sf /data0/clee/CMIP6/CESM2/r4i1p1f1/pre/A*.nc $path_pre/ # Modify to your own path !!!
+    ln -sf /data0/clee/CMIP6/CESM2/r4i1p1f1/pre/A*.nc $path_pre/ # Modify to your own path !!! ⚠️ 
 fi
 
 #     Get YYYY*r1i1p1f1.nc >> True calculation:
@@ -215,4 +215,3 @@ python rev.pik2netcdf_merge_2100.py
 echo Done, check the necfile output
 ```
 
-⚠️ In the `main.sh`, pay attention to $root_PI, $root_TCGI, modidy them to your own paths saves the PI and TCGI data that you need to calculate by yourself.
