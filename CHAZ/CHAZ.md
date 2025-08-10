@@ -1,6 +1,13 @@
-# 🌎 👉 🌀 TC Downscaling from CESM2/CESM2-FA Using CHAZ
+# 🌎 👉 🌀 TC Downscaling Using CHAZ
 
-## 1️⃣ CHAZ Package, including source Codes and Model parameters
+#### Update Notes — 2025.08.08
+CHAZ was successfully installed on the Princeton Tiger3 cluster. This tutorial has now been updated to support all platforms, including local machines.
+
+#### Update Notes — 2025.07.04
+Created this GitHub page to demonstrate running CHAZ with my own simulation data — fully coupleds run using CESM2 and CESM2-FA (Zhuo et al. 2025 JCL).
+
+
+## 1️⃣ Install CHAZ — Fetch the Source Code and Dependent Data to Your PC
 
 The CHAZ package (source code, dependencies, and model parameters) is stored at:
 ```bash
@@ -16,35 +23,40 @@ Copy this folder to your local machine. It contains:
 
 `chaz_data/` — CHAZ’s dependent data, for example: landmask.nc, best-track data
 
+⚠️ Do not modify the original source code directly.
+The version provided here has been adapted for:
+1. **Python 3 compatibility**  
+   > Many changes were made to ensure CHAZ runs under Python 3. Some were also necessary for script execution, but the exact list of modifications is no longer fully documented.
 
-⚠️ Please **do not modify** the original source code directly.
-The source code provided here has been adapted for:
-1. Compatibility with **Python 3** (*Quick note: Many modifications have been made to ensure CHAZ running wiht Python v3, many other modificaitons are also made to ensure scripts running, but it has been a while, I don't remember exactly what modifications I've made*)
-2. Support for **CESM2/CESM2-FA input formats**, ensuring that PI and TCGI .mat files use `'lon'` and `'lat'` as axes and have a shape of `(91, 180)`. 
+2. **CESM2/CESM2-FA or other model/ERA input format support**
+   > PI and TCGI .mat files must use 'lon' and 'lat' as axes, with shape (91, 180).
 
 
 ### 📚 CHAZ Tutorials
-I have also created two CHAZ tutorials by converting Chia-Ying's source code into Jupyter notebooks, which can be run directly in your browser via Google Colab. 
+For a deeper understanding of CHAZ’s source code, see the Jupyter notebook tutorials (runnable directly in your browser via Google Colab):
 
 - [CHAZ Preprocessing Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Tutorial_chaz_pre.ipynb)  
 - [CHAZ Downscaling Tutorial](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/Turtorial_chaz_downscaling.ipynb)
-- You can also find the same jupyter notebooks that are uploaded to [CHAZ github](https://github.com/cl3225/CHAZ/tree/main)
 
-These tutorials are designed to help users understand and reproduce the CHAZ workflow. **However, running CHAZ on LDEO-Taroko or other local machines will still require following my step-by-step instructions below.**
+These tutorials aim to help users understand and reproduce the CHAZ workflow.
+However, **running CHAZ on LDEO-Taroko or other local systems still requires following the step-by-step instructions below.**
 
-## 2️⃣ Input Data Preparation & Working Directory Setup
-1. Prepare a `.csv` file specifying the paths to all CHAZ input files:  
+## 2️⃣ Be Ready! - Prepare Your Data and Set Up the CHAZ Working Directory
+**1. Prepare the input list**
+Create a .csv file specifying the paths to all CHAZ input files.
+Example file:
    `/data0/jzhuo/tc_risk/CESM2/CHAZ/input_data/cesm2_cesm2fa_chaz_data.csv`
-   
-2. Create a working directory for each case under:  
+
+⚠️ The current version of CHAZ does **not** include TCGI and PI calculations — you will need to generate these datasets separately (see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md)) and link them into the CHAZ working directory using `ln -sf` (this step is already handled in the `main.sh` script below).
+
+**2. Create a working directory**
+For each case, make a dedicated working directory under:
    `/data0/jzhuo/tc_risk/CESM2/CHAZ/work/`
   
-## 3️⃣ Running CHAZ
+## 3️⃣ Run CHAZ! - Set Parameters and Execute the Analysis via a bash script `main.sh`
 
 📝 CHAZ is controlled via `Namelist.py`, which determines whether to run the **preprocessing** or **downscaling** steps and defines the paths to required input data.  
 Please review the file at `/data0/jzhuo/tc_risk/chaz_src/src_nodaily/Namelist.py` to get a sense of how the script is configured.
-
-⚠️ The current version of CHAZ does **not** include TCGI and PI calculations — you will need to generate these datasets separately (see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md)) and link them into the CHAZ working directory using `ln -sf` (this step is already handled in the `main.sh` script below).
 
 ✅ The following `main.sh` script implements a complete, reproducible workflow for running CHAZ from preprocessing to downscaling. Copy and paste the script into the directory where you want to place `main.sh`, then run:
 
@@ -55,13 +67,13 @@ bash main.sh
 
 ```bash
 #!/bin/bash
-# Author: Jingyi zhuo (jz4351@princeton.edu)
+# Author: Jingyi zhuo (jzhuo@princeton.edu)
 
 # Set up working path
-root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work 
-root_PI=/data0/jzhuo/tc_risk/CESM2/data_PI
-root_TCGI=/data0/jzhuo/tc_risk/CESM2/data_TCGI
-pth_chaz_src=/data0/jzhuo/tc_risk/chaz_src
+root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work # Modify to your own path !!!
+root_PI=/data0/jzhuo/tc_risk/CESM2/data_PI # Modify to your own path !!!
+root_TCGI=/data0/jzhuo/tc_risk/CESM2/data_TCGI # Modify to your own path !!!
+pth_chaz_src=/data0/jzhuo/tc_risk/chaz_src # Modify to your own path !!!
 cd $root_work
 
 ####################################################
@@ -74,7 +86,7 @@ reso=Amon
 TCGI=TCGI_CRH_PI
 
 if [ "$forcing" == "hist" ]; then
-    year1=1965
+    year1=1965 # Modify to your own setting
     year2=2014
 elif [ "$forcing" == "ssps585" ]; then
     year1=2015
@@ -98,7 +110,6 @@ echo Start ... $model $imem
 ####################################################
 
 # 1. Calculate PI & TCGI, and link data to the pre folder:
-# bash /data0/jzhuo/tc_risk/CESM2/code_TCGI/main*.sh 
 # >> This step needs to be done by yourself separately, since CHAZ doesn't integrate the TC genesis calculation part and use TCGI data from Suzana. SMH...
 cp "$pth_chaz_src/src_nodaily"/* "$path_pre"
 cd "$path_pre"
@@ -134,13 +145,14 @@ sed -i "/^Model/c\Model = '$model'" $path_pre/Namelist.py
 sed -i "/^TCGIinput/c\TCGIinput = 'TCGI_CRH_PI'" $path_pre/Namelist.py  # or adapt if variable
 
 
-#     Link A_*YYYYMM.nc: covariance matrix 
-##     Note here we use the A from the existing data calculated using CMIP6-CESM2 for not saving daily u, v at the beginning
+#     Link A_*YYYYMM.nc: covariance matrix
+# For users who don't have daily U, V data, you need to chat with Chia-Ying what data your can use. Here, I used existing wind covarience data (named A_*YYYYMM.nc) calculated using CMIP6-CESM2 !!!
+
 if [ "$reso" == "Amon" ]; then
     sed -i 's/calWind = True/calWind = False/g' Namelist.py
     sed -i 's/calA = True/calA = False/g' Namelist.py
     # Link A from other locations:
-    ln -sf /data0/clee/CMIP6/CESM2/r4i1p1f1/pre/A*.nc $path_pre/
+    ln -sf /data0/clee/CMIP6/CESM2/r4i1p1f1/pre/A*.nc $path_pre/ # Modify to your own path !!!
 fi
 
 #     Get YYYY*r1i1p1f1.nc >> True calculation:
@@ -195,3 +207,5 @@ python CHAZ.py
 python rev.pik2netcdf_merge_2100.py
 echo Done, check the necfile output
 ```
+
+⚠️ In the `main.sh`, pay attention to $root_PI, $root_TCGI, modidy them to your own paths saves the PI and TCGI data that you need to calculate by yourself.
