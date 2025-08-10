@@ -3,6 +3,13 @@
 #### Update Notes — 2025.08.08
 CHAZ was successfully installed on the Princeton Tiger3 cluster. This tutorial has now been updated to support all platforms, so you can run CHAZ on your local machines.
 
+To solve issue like "ImportError: cannot import name '_lazywhere' from 'scipy._lib._util", Downgrade scipy to a version that still has _lazywhere:
+```bash
+conda activate #your_conda_env
+conda install scipy=1.13.0
+```
+
+
 #### Update Notes — 2025.07.04
 Created this GitHub page to demonstrate running CHAZ with my own simulation data — fully coupleds run using CESM2 and CESM2-FA (Zhuo et al. 2025 JCL).
 
