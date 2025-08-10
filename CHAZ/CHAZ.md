@@ -29,7 +29,7 @@ The version provided here has been adapted for:
    > Many changes were made to ensure CHAZ runs under Python 3. Some were also necessary for script execution, but the exact list of modifications is no longer fully documented.
 
 2. **CESM2/CESM2-FA or other model/ERA input format support**
-   > PI and TCGI .mat files must use 'lon' and 'lat' as axes, with shape (91, 180).
+   > PI and TCGI .mat files must use 'lon' and 'lat' as axes, with shape (91, 180). One can use any *.nc file saved at `/data0/jzhuo/tc_risk/CESM2/data_TCGI/clim_ERA5` as target grid for regridding.
 
 
 ### 📚 CHAZ Tutorials
