@@ -79,7 +79,7 @@ bash main.sh
 #!/bin/bash
 # Author: Jingyi zhuo (jzhuo@princeton.edu)
 
-export PYTHONPATH=/scratch/gpfs/GEOCLIM/jzhuo/tc_risk/chaz_src/pyclee !!! ⚠️ Remember to import some dependent CHAZ codes
+export PYTHONPATH=/data0/jzhuo/tc_risk/chaz_src/pyclee/ # !!! ⚠️ Remember to import this path
 
 # Set up working path
 root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work # Modify to your own path !!! ⚠️ 
