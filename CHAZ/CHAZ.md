@@ -56,7 +56,7 @@ Example file:
 
 ⚠️ The current version of CHAZ does **not** include TCGI and PI calculations — you will need to generate these datasets separately (see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md)) and link them into the CHAZ working directory using `ln -sf` (this step is already handled in the `main.sh` script below).
 
-⚠️ If you only have monly U, V, you will must need to get the wind coveriance data from other sources. Here I use the wind coveriance derived from daily CESM2-CMIP6 U, V. (data saved at `/data0/jzhuo/tc_risk/CESM2/CMIP6_CESM2/windcov/`)
+⚠️ If you only have monthly U, V, then you will must need to get the wind coveriance data from other sources. Here I use the wind coveriance derived from CESM2-CMIP6 daily U, V. (data saved at `/data0/jzhuo/tc_risk/CESM2/CMIP6_CESM2/windcov/`)
 
 **2. Create a working directory**
 For each case, make a dedicated working directory under:
@@ -78,6 +78,8 @@ bash main.sh
 ```bash
 #!/bin/bash
 # Author: Jingyi zhuo (jzhuo@princeton.edu)
+
+export PYTHONPATH=/scratch/gpfs/GEOCLIM/jzhuo/tc_risk/chaz_src/pyclee !!! ⚠️ Remember to import some dependent CHAZ codes
 
 # Set up working path
 root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work # Modify to your own path !!! ⚠️ 
