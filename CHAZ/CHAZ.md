@@ -16,7 +16,7 @@ Created this GitHub page to demonstrate running CHAZ with my own simulation data
 
 ## 1️⃣ Install CHAZ — Fetch the Source Code and Dependent Data to Your PC
 
-The CHAZ package (source code, dependencies, and model parameters) is stored at:
+The CHAZ package (source codes and model parameters) is stored at:
 ```bash
 /data0/jzhuo/tc_risk/chaz_src/
 ```
