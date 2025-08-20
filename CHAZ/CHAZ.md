@@ -26,7 +26,7 @@ Copy this folder to your local machine. It contains:
 
 `src_nodaily/` — Code for runs with monthly-only data
 
-`pyclee/` — CHAZ’s dependent Python modules
+`pyclee/` — CHAZ’s dependent Python modules (Remember to export the codes under this path!!)
 
 `chaz_data/` — CHAZ’s dependent data, for example: landmask.nc, best-track data
 
@@ -56,10 +56,13 @@ Example file:
 
 ⚠️ The current version of CHAZ does **not** include TCGI and PI calculations — you will need to generate these datasets separately (see [TCGI.md](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/TCGI.md)) and link them into the CHAZ working directory using `ln -sf` (this step is already handled in the `main.sh` script below).
 
+⚠️ If you only have monly U, V, you will must need to get the wind coveriance data from other sources. Here I use the wind coveriance derived from daily CESM2-CMIP6 U, V. (data saved at `/data0/jzhuo/tc_risk/CESM2/CMIP6_CESM2/windcov/`)
+
 **2. Create a working directory**
 For each case, make a dedicated working directory under:
    `/data0/jzhuo/tc_risk/CESM2/CHAZ/work/`
-  
+
+
 ## 3️⃣ Run CHAZ! — Set Parameters and Execute the Analysis via a bash script `main.sh`
 
 📝 CHAZ is controlled via `Namelist.py`, which determines whether to run the **preprocessing** or **downscaling** steps and defines the paths to required input data.  
@@ -80,7 +83,8 @@ bash main.sh
 root_work=/data0/jzhuo/tc_risk/CESM2/CHAZ/work # Modify to your own path !!! ⚠️ 
 root_PI=/data0/jzhuo/tc_risk/CESM2/data_PI # Modify to your own path !!! ⚠️ 
 root_TCGI=/data0/jzhuo/tc_risk/CESM2/data_TCGI # Modify to your own path !!! ⚠️ 
-pth_chaz_src=/data0/jzhuo/tc_risk/chaz_src # Modify to your own path !!! ⚠️ 
+pth_chaz_src=/data0/jzhuo/tc_risk/chaz_src # Modify to your own path !!! ⚠️
+path_windcov=/data0/jzhuo/tc_risk/CESM2/CMIP6_CESM2/windcov/ # Modify to your own path !!! ⚠️
 cd $root_work
 
 ####################################################
@@ -159,7 +163,7 @@ if [ "$reso" == "Amon" ]; then
     sed -i 's/calWind = True/calWind = False/g' Namelist.py
     sed -i 's/calA = True/calA = False/g' Namelist.py
     # Link A from other locations:
-    ln -sf /data0/clee/CMIP6/CESM2/r4i1p1f1/pre/A*.nc $path_pre/ # Modify to your own path !!! ⚠️ 
+    ln -sf $path_windcov/A*.nc $path_pre/ # Modify to your own path !!! ⚠️ 
 fi
 
 #     Get YYYY*r1i1p1f1.nc >> True calculation:
