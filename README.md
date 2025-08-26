@@ -8,6 +8,6 @@ The hierarchical modeling approach integrates climate simulations from the fully
 
 
 ### 🌍 TC downscaling
-- 📈 [**CHAZ**](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/CHAZ.md) — TC downscaling using [CHAZ model](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/CHAZ)
-- 📊 [**MIT**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/MIT_model) — TC downscaling using [Jonathanlin's model](https://github.com/linjonathan/tropical_cyclone_risk)
-- 🌊 [**GFDL**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/GFDL_model) — TC downscaling using GFDL high-resolution atmospheric models HiRAM (50km) and AM2.5C360 (25km) 
+- 📈 [**CHAZ**](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/CHAZ.md) — TC statistical downscaling using [CHAZ model](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/CHAZ)
+- 📊 [**MIT**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/MIT_model) — TC statistical downscaling using [Jonathanlin's model](https://github.com/linjonathan/tropical_cyclone_risk)
+- 🌊 [**GFDL**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/GFDL_model) — TC dynamical downscaling using GFDL high-resolution atmospheric models HiRAM (50km) and AM2.5C360 (25km) 
