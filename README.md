@@ -11,4 +11,4 @@ Here, we explore how biases in forced trends of the tropical Pacific SST that pe
 - 💾 [**CESH2-FA**] ([https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/CHAZ.md](https://github.com/jingyizhuo/CESM2-FA)) - Constraining the mean-state bias of CESM2 via surface flux corrections, producing a more realistic historical forced SST trend.
 - 📈 [**CHAZ**](https://github.com/jingyizhuo/CESM2-FA_TC/blob/main/CHAZ/CHAZ.md) — TC downscaling using [CHAZ model](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/CHAZ)
 - 📊 [**MIT**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/MIT_model) — TC downscaling using [Jonathanlin's model](https://github.com/linjonathan/tropical_cyclone_risk)
-- 🌊 [**GFDL**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/GFDL_model) — sea surface temperature and sea ice forced high-resolution atmospheric models: HiRAM (50 km) and AM2.5C360 (25 km).
+- 🌊 [**GFDL**](https://github.com/jingyizhuo/CESM2-FA_TC/tree/main/GFDL_model) — High-resolution atmospheric models forced by sea surface temperature and sea ice: HiRAM (50 km) and AM2.5C360 (25 km).
