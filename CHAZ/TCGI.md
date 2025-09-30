@@ -27,7 +27,7 @@ TCGI is a weighted sum of several TC-related environmental variables, with weigh
 If you are applying these weights to datasets other than ERA5, bias correction is required. For example:
 
 ```python
-clim = data_era5 # the 1981-2020 climatology of a predictor based on ERA5 
+clim = data_era5 # the 1981-2021 climatology of a predictor based on ERA5 
 data = data_yours # your data that need bias correction
 data_bc = data + (clim - data.groupby('time.month'))
 ```
