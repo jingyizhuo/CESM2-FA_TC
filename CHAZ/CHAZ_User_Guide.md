@@ -47,12 +47,11 @@ for_hiro/
 │   │   ├── run/               # Workflow orchestration
 │   │   │   ├── main.sh        # PRIMARY ENTRY POINT
 │   │   │   ├── Namelist.py    # Configuration template
-│   │   │   ├── run_CHAZ.py    # Multi-member runner
-│   │   │   ├── run_pre.py     # Multi-member preprocessor
-│   │   │   └── run_netcdf.py  # Batch pickle → NetCDF converter
+│   │   │   ├── others.py      # Not used 
 │   │   ├── chaz_para/         # Static support data (landmask, obs TC stats)
-│   │   ├── input_data_table/  # GCM data catalogs (CSV)
-│   │   └── pyclee/            # TC utility library
+│   │   ├── input_data_table/  # GCM data catalogs (CSV) and the jupyter notebook to generate the CSV
+│   │   │   ├── gen_SPEAR_input_label.ipynb      # Modify by user to denote input data path for CHAZ, in a CMIP6 format
+│   │   └── pyclee/            # TC utility library wrote by Chia-Ying, must load pyclee as a PYTHONPATH
 │   │
 │   └── chaz_work/             # Working directory (created at runtime)
 │       └── {model}/{member}/
@@ -61,11 +60,9 @@ for_hiro/
 │
 └── data/
     └── output_tcgi/           # Precomputed TCGI and PI matrices
-        ├── TCGI_CRH_PI/
-        │   └── {model}/{forcing}/{member}/
-        │       └── TCGI_CRH_PI_{model}_{forcing}_{member}_{YYYY}.mat
-        └── {model}/{forcing}/{member}/
-            └── PI_{model}_{forcing}_{member}_{YYYY}.mat
+    └── daily/                 # SPEAR daily u, v output for running CHAZ
+    └── monthly/               # SPEAR daily output for running CHAZ
+
 ```
 
 ---
@@ -76,17 +73,17 @@ for_hiro/
 
 Precomputed TC Genesis Index matrices. CHAZ does **not** compute these — they must exist before running CHAZ (use the `tcgi_src/` workflow to generate them).
 
-- **Location:** `data/output_tcgi/TCGI_CRH_PI/{model}/{forcing}/{member}/`
+- **Location:** `data/output_tcgi/`
 - **Format:** MATLAB `.mat` files
-- **Naming:** `TCGI_CRH_PI_{model}_{forcing}_{member}_{YYYY}.mat`
+- **Naming:** `TCGI_CRH_PI_{YYYY}.mat`, `TCGI_SD_PI_{YYYY}.mat`, 
 - **Content:** Monthly genesis probability (12 × nlat × nlon)
 
 ### 3.2 PI Matrices (required)
 
 Potential Intensity matrices, also precomputed via `tcgi_src/`.
 
-- **Location:** `data/output_tcgi/{model}/{forcing}/{member}/`
-- **Naming:** `PI_{model}_{forcing}_{member}_{YYYY}.mat`
+- **Location:** `data/output_tcgi/`
+- **Naming:** `PI_{YYYY}.mat`
 
 ### 3.3 GCM Atmospheric Data (required)
 
@@ -147,11 +144,11 @@ The `Namelist.py` file (template in `run/`) controls all CHAZ settings. `main.sh
 ```python
 Model          = 'SPEAR'            # GCM name (must match CSV catalog source_id)
 ENS            = 'r1i1'             # Ensemble member ID
-TCGIinput      = 'TCGI_CRH_PI'     # TCGI variant to use
+TCGIinput      = 'TCGI_CRH_PI'      # TCGI variant to use, can change to TCGI_SD_PI
 PImodelname    = 'SPEAR'            # Model name for PI lookup
 Experiment_id  = 'historical'       # 'historical' or 'ssp585'
-Year1          = 1965               # Start year
-Year2          = 2014               # End year
+Year1          = 2026               # Start year
+Year2          = 2026               # End year
 ```
 
 ### 4.2 Path Settings
@@ -168,33 +165,13 @@ root         = '/path/to/for_hiro'
 ### 4.3 Model Parameters
 
 ```python
-uBeta         = -1.5    # Zonal beta-drift parameter for track model
-vBeta         =  2.0    # Meridional beta-drift parameter
-survivalrate  =  0.78   # TC survival rate (fraction of seeded TCs that persist)
+uBeta         = -1.5    # Zonal beta-drift parameter for track model, usually don't need to change
+vBeta         =  2.0    # Meridional beta-drift parameter, usually don't need to change
+survivalrate  =  0.78   # TC survival rate (fraction of seeded TCs that persist), can change to get the derived TC number
 CHAZ_ENS_0   =  0       # Index of first CHAZ ensemble member
 CHAZ_ENS     =  10      # Number of CHAZ track ensembles per year
 CHAZ_Int_ENS =  40      # Number of stochastic intensity realizations per track
 ```
-
-### 4.4 Processing Flags
-
-These are set automatically by `main.sh`, but can be set manually:
-
-```python
-# --- Preprocessing phase (path_pre) ---
-runPreprocess  = True   # Set True in path_pre, False in path_wdir
-calWind        = True   # Compute wind covariance from daily data?
-calpreProcess  = True   # Interpolate GCM predictors to TC grid?
-calA           = True   # Compute Cholesky decomposition of covariance?
-
-# --- Downscaling phase (path_wdir) ---
-runCHAZ  = False        # Set False in path_pre, True in path_wdir
-calGen   = True         # Run genesis module?
-calBam   = True         # Run track module?
-calInt   = True         # Run intensity module?
-```
-
----
 
 ## 5. Running CHAZ: Step-by-Step
 
@@ -279,7 +256,7 @@ cp $pth_chaz_src/src_nodaily/* $root_work/$model/$imem/wdir/
 cd $root_work/$model/$imem/wdir
 # Edit Namelist.py: set runPreprocess=False, runCHAZ=True
 python CHAZ.py
-python rev.pik2netcdf_merge_2100.py
+python rev.pik2netcdf_merge_2100.py Converting All Pickles to NetCDF
 ```
 
 ---
@@ -323,100 +300,15 @@ bt.StormYear     # (nstorms,)       — genesis year of each storm
 
 ---
 
-## 7. Special Cases
 
-### 7.1 Monthly-Only Data (No Daily Wind)
-
-When daily wind data are unavailable (e.g., SPEAR), set `reso="Amon"` in `main.sh`. This disables `calWind` and `calA`, but **precomputed `A_YYYYMM.nc` files must be provided** and linked into `pre/`.
-
-```bash
-reso="Amon"
-path_windcov="/path/to/existing/A_matrices"
-# main.sh will run: ln -sf $path_windcov/A*.nc $path_pre/
-```
-
-If you have no `A_YYYYMM.nc` files at all, contact the CHAZ developers for a climatological default.
-
-### 7.2 Running Multiple Ensemble Members
-
-Use `run_pre.py` and `run_CHAZ.py` in `run/` to loop over members:
-
-```bash
-python run_pre.py    # Preprocessing for all members listed in SearchMember.py
-python run_CHAZ.py   # Downscaling for all preprocessed members
-```
-
-`SearchMember.py` queries the CSV catalogs to find ensemble members with complete data across all required variables and years.
-
-### 7.3 Future Scenarios (SSP585)
-
-Change `forcing` and `Experiment_id` in `main.sh` and `Namelist.py`:
-
-```bash
-forcing="ssps585"
-# In Namelist.py:
-Experiment_id = 'ssp585'
-```
-
-Ensure the CSV catalog contains the SSP data (e.g., a `cmip6_ssp585_opendap.csv`).
-
-### 7.4 Converting All Pickles to NetCDF
-
-```bash
-cd $root_work/$model/$imem/wdir
-python run_netcdf.py    # Batch-converts all *.pik in wdir to netcdf/
-```
-
----
-
-## 8. Working with Outputs
-
-### 8.1 Read Pickle Files
-
-```python
-import pickle, numpy as np
-
-with open('bt_stochastic_det1995_ens000.pik', 'rb') as f:
-    bt = pickle.load(f)
-
-# Filter to a specific year
-yr = 1995
-istorms = np.where(bt.StormYear == yr)[0]
-lons = bt.StormLon[:, istorms]
-lats = bt.StormLat[:, istorms]
-wspd = bt.StormMwspd[:, istorms]
-```
-
-### 8.2 Assign Storms to Basins
-
-```python
-import sys
-sys.path.insert(0, '/path/to/chaz_src/pyclee')
-from pygplib3.util import getbasinMap, defineBasin
-
-xbin, ybin, basinMap = getbasinMap()
-basin = defineBasin(genesis_lon, genesis_lat, xbin, ybin, basinMap)
-# basin: 1=ATL, 2=ENP, 3=WNP, 4=NI, 5=SI, 6=AUS, 7=SPC
-```
-
-### 8.3 Read NetCDF Outputs
-
-```python
-import xarray as xr
-ds = xr.open_dataset('wdir/netcdf/chaz_tracks_1965-2014.nc')
-print(ds)
-```
-
----
-
-## 9. Dependencies
+## 8. Dependencies
 
 **Python packages:**
 ```
-numpy, pandas, scipy, xarray, netCDF4, dask, matplotlib, cartopy, statsmodels, pygplib3
+numpy, pandas, scipy, xarray, netCDF4, dask, matplotlib, cartopy, statsmodels
 ```
 
-**Internal library (no install needed):**
+**Internal library (MUST ADD):**
 ```
 pyclee/  — added to PYTHONPATH automatically by main.sh
 ```
@@ -434,7 +326,7 @@ If running manually, add this export to your shell before calling `python CHAZ.p
 
 ---
 
-## 10. Troubleshooting
+## 9. Troubleshooting
 
 | Problem | Likely Cause | Fix |
 |---------|-------------|-----|
