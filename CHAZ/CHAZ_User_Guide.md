@@ -44,7 +44,6 @@ for_hiro/
 │   ├── chaz_src/              # Source code (do not modify directly)
 │   │   ├── src/               # Preprocessing scripts (with daily wind data)
 │   │   ├── src_nodaily/       # Preprocessing scripts (monthly-only data)
-│   │   ├── src_nodaily_jzhuorevised/   # Modified version by J. Zhuo
 │   │   ├── run/               # Workflow orchestration
 │   │   │   ├── main.sh        # PRIMARY ENTRY POINT
 │   │   │   ├── Namelist.py    # Configuration template
@@ -414,7 +413,7 @@ print(ds)
 
 **Python packages:**
 ```
-numpy, pandas, scipy, xarray, netCDF4, dask, matplotlib, cartopy, statsmodels
+numpy, pandas, scipy, xarray, netCDF4, dask, matplotlib, cartopy, statsmodels, pygplib3
 ```
 
 **Internal library (no install needed):**
