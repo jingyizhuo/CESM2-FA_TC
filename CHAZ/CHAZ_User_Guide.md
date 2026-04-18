@@ -11,10 +11,8 @@
 4. [Configuration: Namelist.py](#4-configuration-namelistpy)
 5. [Running CHAZ: Step-by-Step](#5-running-chaz-step-by-step)
 6. [Output Files](#6-output-files)
-7. [Special Cases](#7-special-cases)
-8. [Working with Outputs](#8-working-with-outputs)
-9. [Dependencies](#9-dependencies)
-10. [Troubleshooting](#10-troubleshooting)
+7. [Dependencies](#7-dependencies)
+8. [Troubleshooting](#8-troubleshooting)
 
 ---
 
@@ -282,26 +280,10 @@ python rev.pik2netcdf_merge_2100.py Converting All Pickles to NetCDF
 
 **One `.pik` file is produced per year per ensemble member.** With defaults (`CHAZ_ENS=10`, 50-year run), expect ~500 pickle files.
 
-### 6.3 Pickle File Contents
-
-```python
-import pickle
-with open('bt_stochastic_det1995_ens000.pik', 'rb') as f:
-    bt = pickle.load(f)
-
-bt.StormLon      # (ntime, nstorms) — longitude positions
-bt.StormLat      # (ntime, nstorms) — latitude positions
-bt.StormMwspd    # (ntime, nstorms) — maximum wind speed (m/s)
-bt.StormMslp     # (ntime, nstorms) — minimum sea-level pressure (hPa)
-bt.Time          # (ntime, nstorms) — datetime objects
-bt.determin      # (ntime, nstorms) — deterministic intensity
-bt.StormYear     # (nstorms,)       — genesis year of each storm
-```
-
 ---
 
 
-## 8. Dependencies
+## 7. Dependencies
 
 **Python packages:**
 ```
@@ -326,7 +308,7 @@ If running manually, add this export to your shell before calling `python CHAZ.p
 
 ---
 
-## 9. Troubleshooting
+## 8. Troubleshooting
 
 | Problem | Likely Cause | Fix |
 |---------|-------------|-----|
