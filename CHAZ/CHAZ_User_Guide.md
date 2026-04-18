@@ -324,11 +324,10 @@ If running manually, add this export to your shell before calling `python CHAZ.p
 
 ## Quick-Start Checklist
 
-- [ ] TCGI matrices exist for all years in `data/output_tcgi/TCGI_CRH_PI/`
+- [ ] TCGI matrices exist for all years in `data/output_tcgi/`
 - [ ] PI matrices exist in `data/output_tcgi/`
 - [ ] GCM data accessible; CSV catalog file updated
-- [ ] If monthly-only: `A_YYYYMM.nc` files available at `path_windcov`
-- [ ] `main.sh` top variables configured (`model`, `imem`, `forcing`, `year1`, `year2`, `reso`)
+- [ ] `main.sh` top variables configured (`model`, `imem`, `forcing`, `year1`, `year2`)
 - [ ] PYTHONPATH includes `pyclee/`
 - [ ] Run `bash main.sh`
 - [ ] Check `chaz_work/{model}/{member}/wdir/` for `.pik` output files
